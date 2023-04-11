@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+h1 {
+  padding: 2vh;
+  font-size: 10vh; 
+  font-weight: 2000; 
+  font-family: monospace, sans-serif;
+  text-align: center;
+  }
+
+h2 {
+  font-size: 5vh; 
+  font-family: Montserat, sans-serif;
+  text-align: center;
+  color: #ffc8dd;
+}
+
+h3 {
+  font-size: 20px; 
+  font-family: Montserat, sans-serif;
+  text-align: center;
+}
+
+p {
+  font-size: 15px; 
+  font-family: Montserat, sans-serif; 
+  padding: 1em 1em 2em 2em; 
+  line-height: 20px;
+}
+
+ul {
+  text-decoration: red wavy underline; 
+  font-size: 15px; 
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+  color: #212121;
+  font-family: Montserrat, sans-serif;
+  text-rendering: optimizeLegibility; 
+}
+
+/* forces image to fit viewport without being too large */
+img {
+  display: block;
+  max-width: 1024px;
+  max-height:600px;
+  width: auto;
+  height: auto;
+}
+
+/* automatically sets content into 100& viewport */
+/* container class then keeps the max-width content to 1024 px and 95% of the page */
+
+.container {
+  margin: 0 auto;
+  width: 95%;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 0.5fr;
+  grid-template-rows: 0.5fr 1fr 1fr;  
+  grid-gap: 3vh;
+  align-items: center;
+  grid-template-areas:
+    "header header header"
+    "img img contact"
+    "text text text";
+}
+
+.grid > header {
+  background-color: #ffc8dd; 
+  grid-area: header;
+  color: #fdfdfd;
+  text-align: justify;
+  inline-size: 100%;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  }
+   
+.grid img {
+  grid-area: img;
+  object-fit: cover;
+  max-width: 100%; /* ensure the image stays within its container */
+  height: auto;
+}
+
+.grid .contact {
+  font-family: Montserrat, sans-serif;
+  grid-area: contact;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self:start;
+}
+
+a:hover {color: #ffafcc; }
+/* styling for when a link is hovered */ 
+
+a.download-link {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0px 3px 0px 0px lightgrey;
+}
+
+.download-link {
+  background-color: #cdb4dbcd;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+a.download-link:hover {
+  color: white; 
+  background-color: #ffafcc;
+  cursor: pointer;
+}
+
+#contact-form {
+  max-width: 1024px; 
+  
+}
+/* case of mobile phones loading */ 
+ @media (max-width: 500px) {
+  p {
+    font-size: 2.5vh; 
+  }
+   
+  img {
+  display: block;
+  max-width: 50%;
+  max-height: 50%; 
+  }
+
+}
