@@ -1,45 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 h1 {
   padding: 2vh;
-  font-size: 10vh; 
-  font-weight: 2000; 
+  font-size: 10vh;
+  font-weight: 2000;
   font-family: monospace, sans-serif;
   text-align: center;
   color: #030511;
-  }
+}
 
 h2 {
-  font-size: 5vh; 
+  font-size: 5vh;
   font-family: monospace, sans-serif;
   text-align: center;
   color: #030511;
 }
 
 h3 {
-  font-size: 20px; 
+  font-size: 4vh;
   font-family: monospace, sans-serif;
   text-align: center;
 }
 
+h4 {
+  font-size: 3vh;
+  font-family: Montserat, sans-serif;
+  text-align: center;
+  padding-bottom: 1.25vh;
+}
+
 p {
-  font-size: 15px; 
-  font-family: Montserat, sans-serif; 
-  padding: 1em 1em 2em 2em; 
+  font-size: 15px;
+  font-family: Montserat, sans-serif;
+  padding: 1em 1em 2em 2em;
   line-height: 20px;
 }
 
 b {
-    color: #14248A;
-    line-height: 5vh;
+  color: #14248a;
+  line-height: 5vh;
 }
 
 .lilac {
-    color: #cdb4dbcd;
+  color: #cdb4dbcd;
 }
 
-.darkerblue {
-    color: #998fc7;
+.darkerpurple {
+  color: #998fc7;
 }
 
 .limited {
@@ -48,16 +55,15 @@ b {
   background-color: #fdfdfd;
   color: #212121;
   font-family: Montserrat, sans-serif;
-  text-rendering: optimizeLegibility; 
+  text-rendering: optimizeLegibility;
 }
 /* automatically sets content into 100& viewport */
-
 
 /* forces image to fit viewport without being too large */
 img {
   display: block;
   max-width: 1024px;
-  max-height:600px;
+  max-height: 600px;
   width: auto;
   height: auto;
 }
@@ -66,105 +72,156 @@ img {
 .container {
   margin: 0 auto;
   width: 95%;
-  max-width: 1024px; 
+  max-width: 1024px;
 }
 
 .grid {
   display: grid;
   width: 100%;
-  padding: 1.5vh 0;
-  grid-template-columns: 1.5fr 2fr 0.15fr;
-  grid-template-rows: 0.5fr 0.5fr 0.15fr; 
-  grid-gap: vh 3vh;
+  grid-template-columns: 2fr 2fr 2fr 0.25fr;
+  grid-template-rows: 0.5fr 0.5fr 0.15fr;
+  grid-gap: 0vh 0.25vh;
+  padding-bottom: 1vh;
   align-items: center;
   grid-template-areas:
-    "header header header"
-    "img info links"
-    "about about about"
-    "education education-text education-text"
-    "education2 education2-text education2-text";
+    "header header header header"
+    "img info info links"
+    "about about honesty honesty"
+    "education-header education-header education-header education-header"
+    "education education education-text education-text"
+    "education2 education2 education2-text education2-text";
 }
 
 .grid > header {
-  background-color: #d4c2fc; 
+  background-color: #d4c2fc;
   grid-area: header;
-  background-color: #28262C;
+  background-color: #28262c;
   text-align: justify;
   inline-size: 100%;
   overflow-wrap: break-word;
   max-width: 100%;
-  font-size: 10vh;
-  border-radius: 5px;
-  }
+}
 
 .grid > header h1 {
-    padding: 1vh;
-    color: #F9F5FF;
-    font-size: 10vh; 
-    font-weight: 2000; 
-    font-family: monospace, sans-serif;
-    text-align: center;
-    }
-  
-.grid img {
-  padding-top: vh;
+  padding: 3vh;
+  color: #f9f5ff;
+  font-size: 8vh;
+  font-weight: 2000;
+  font-family: monospace, sans-serif;
+  text-align: center;
+}
+
+.grid .me {
+  width: auto;
   grid-area: img;
   object-fit: cover;
   max-width: 100%; /* ensure the image stays within its container */
   height: auto;
-  min-width: 30%; 
+  min-width: 30%;
 }
 
 #me-text {
-    text-align: center;
+  text-align: center;
 }
 
 .grid .info {
+  padding: 2vh;
   font-family: Montserrat, sans-serif;
   grid-area: info;
   display: flex;
   flex-direction: column;
-  max-width: 100%; 
-  text-align:center;
+  max-width: 1024px;
+  text-align: center;
   justify-content: space-around;
-  align-self:start;
+  align-self: start;
 }
 
 .info-text {
-    line-height: 2.5 vh;
+  line-height: 2.5 vh;
 }
 
 .grid .links {
-    text-align:center;
+  grid-area: links;
+  text-align: center;
 }
 
 .grid .about {
-    grid-area: about; 
-    background-color: #F9F5FF;
-    font-family: Montserat, sans-serif;
+  grid-area: about;
+  text-align: justify;
+  padding-bottom: 1.5vh;
+  padding-right: 2vh;
+}
+
+.grid .about h3 {
+  padding-bottom: 2vh;
+}
+
+.grid .education-header {
+  grid-area: education-header;
+}
+.grid .honesty {
+  border-left: 3px solid #998fc7;
+  padding-left: 3vh;
+  height: 100%;
+  grid-area: honesty;
+  grid-row: 3 / 4;
+  grid-template-columns: 1fr;
+}
+
+.grid .honesty h3 {
+  padding-bottom: 2vh;
 }
 
 .grid h2 {
-    color: #998fc7;
+  color: #998fc7;
 }
 
-.grid .education {
-    grid-area: education;
-    background-color: black;
+.education {
+  grid-area: education;
+  background-color: #6152a3;
+  color: #f9f5ff;
+  height: 99%;
+  max-height: 1024px;
+  overflow-wrap: break-word;
+  padding: 1.75vh;
+
+  /* forces text to align vertically AND horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 5vh;
 }
 .grid .education-text {
-    grid-area: education-text;
+  grid-area: education-text;
+  padding-top: 1vh;
+  padding-left: 4vh;
 }
 .grid .education2 {
-    grid-area: education2;
+  grid-area: education2;
+  height: 99%;
+  max-height: 1024px;
+  background-color: #41376d;
+  text-align: center;
+  color: #f9f5ff;
+  padding: 1.75vh;
+  /* forces text to align vertically AND horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 5vh;
 }
 
-.grid .education2-text{
-    grid-area: education2-text;
+.grid .education2-text {
+  grid-area: education2-text;
+  padding-left: 4vh;
 }
 
-a:hover {color: #ffafcc; }
-/* styling for when a link is hovered */ 
+a:hover {
+  color: #ffafcc;
+}
+/* styling for when a link is hovered */
 
 a.link {
   display: inline-block;
@@ -177,58 +234,95 @@ a.link {
 
 .link {
   background-color: #cdb4dbcd;
-  padding: 10px15px;
+  padding: 10px 15px;
   border-radius: 5px;
 }
 
 a.link:hover {
-  color: white; 
+  color: white;
   background-color: #ffafcc;
   cursor: pointer;
+  opacity: 0.5;
+  transition: 0.5s ease;
 }
 
-
-/* Form Styling */ 
+/* Form Styling */
 #contact-jump {
-    padding-top: 5vh;
-    color: white;
-    font-size: 10vh;
+  padding-top: 5vh;
+  color: white;
+  font-size: 10vh;
 }
 
 .heading {
-    padding-top: 1.5vh;
-    color:#030511;
-    font-family: Montserat, sans-serif; 
-    font-size: 2vh; 
+  padding-top: 1.5vh;
+  color: #030511;
+  font-family: Montserat, sans-serif;
+  font-size: 2vh;
 }
 
 .options {
-    color:#030511;
-    font-family: Montserat, sans-serif; 
-    font-size: 2vh; 
+  color: #030511;
+  font-family: Montserat, sans-serif;
+  font-size: 2vh;
 }
 #info-form {
-    background-color: #D4C2FC;
-    padding: 5vh;
+  background-color: #d4c2fc;
+  padding: 5vh;
 }
 /* Grid layout will change to a vertical column in the case of mobile resizing */
 @media (max-width: 768px) {
-    .grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      grid-gap: 3vh;
-      grid-template-areas:
-        "header"
-        "img"
-        "links"
-        "info"
-        "about"
-        "education"
-        "education-text"
-        "education-2"
-        "education2-text";
-    }
-    .grid > header {
-      text-align: center;
-    }
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 2vh 0vh;
+    grid-template-areas:
+      "header"
+      "img"
+      "links"
+      "info"
+      "about"
+      "honesty"
+      "education-header"
+      "education"
+      "education-text"
+      "education2"
+      "education2-text";
   }
+  .grid > header {
+    text-align: center;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .grid .honesty {
+    display: block;
+    grid-area: honesty;
+  }
+
+  .grid .education {
+    grid-area: education;
+    background-color: #28262c;
+    color: #f9f5ff;
+    text-align: center;
+    overflow-wrap: break-word;
+    padding: 1.75vh;
+  }
+  .grid .education-text {
+    grid-area: education-text;
+    padding-left: 4vh;
+  }
+  .grid .education2 {
+    grid-area: education2;
+    background-color: #28262c;
+    text-align: center;
+    color: #f9f5ff;
+    padding: 1.5vh;
+  }
+
+  .grid .education2-text {
+    grid-area: education2-text;
+    padding-left: 4vh;
+  }
+}
