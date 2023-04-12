@@ -17,6 +17,7 @@ h2 {
 }
 
 h3 {
+  font-weight: 400;
   font-size: 4vh;
   font-family: monospace, sans-serif;
   text-align: center;
@@ -80,7 +81,6 @@ img {
   width: 100%;
   grid-template-columns: 2fr 2fr 2fr 0.25fr;
   grid-template-rows: 0.5fr 0.5fr 0.15fr;
-  grid-gap: 0vh 0.25vh;
   padding-bottom: 1vh;
   align-items: center;
   grid-template-areas:
@@ -111,13 +111,13 @@ img {
   text-align: center;
 }
 
-.grid .me {
+.grid #me {
   width: auto;
   grid-area: img;
   object-fit: cover;
   max-width: 100%; /* ensure the image stays within its container */
   height: auto;
-  min-width: 30%;
+  width: 100%;
 }
 
 #me-text {
@@ -150,6 +150,8 @@ img {
   text-align: justify;
   padding-bottom: 1.5vh;
   padding-right: 2vh;
+  height: 100%;
+  background-color: #F9F5FF;
 }
 
 .grid .about h3 {
@@ -163,6 +165,7 @@ img {
   border-left: 3px solid #998fc7;
   padding-left: 3vh;
   height: 100%;
+  background-color: #F9F5FF;
   grid-area: honesty;
   grid-row: 3 / 4;
   grid-template-columns: 1fr;
@@ -253,6 +256,18 @@ a.link:hover {
   font-size: 10vh;
 }
 
+#error {
+  display: none;
+  padding: 0 .25vh;
+}
+#error-box {
+  display: none;
+  border-style: solid;
+  border-color: hotpink;
+  text-align: center;
+  margin-top: 1vh;
+}
+
 .heading {
   padding-top: 1.5vh;
   color: #030511;
@@ -265,6 +280,7 @@ a.link:hover {
   font-family: Montserat, sans-serif;
   font-size: 2vh;
 }
+
 #info-form {
   background-color: #d4c2fc;
   padding: 5vh;

@@ -34,5 +34,50 @@ form.addEventListener("change", function() {
   }
 });
 
+const error = document.querySelector('#error');
+const errorbox = document.querySelector('#error-box');
+
+function showErrorMessage(msg) {
+  // change display type so everything shows
+  errorbox.style.display ="inline-block";
+  error.style.display ="block";
+  // Clear any previous message
+  error.innerHTML = "";
+  // Set the error message text
+  error.innerHTML = msg;
+}
+
+function hideErrorMessage() {
+  // remove from display
+  errorbox.style.display ="none";
+}
+
 /* Form Validation */
 
+form.onsubmit = function() { 
+
+  const name = document.getElementById('name');
+  const message = document.getElementById('message');
+
+  // validate name input
+  if (name.value.length < 3) {
+    showErrorMessage("<b>Name is too short, how will I know who you are!</b>"); 
+    return false;
+  } else {
+    hideErrorMessage();
+  }
+
+  // validate message length
+  message.value = message.value.trim(); 
+  if (message.value.length < 50) {
+    showErrorMessage("Message is too short. Please enter at least 50 characters.");
+    return false;
+  } else {
+    hideErrorMessage(); 
+  }
+}
+
+form.onreset = function() {
+  hideErrorMessage();
+  // clears error message so the user can try again
+}

@@ -102,7 +102,13 @@
           <h3>English Literature Specialist</h3>
           <h4>University of Toronto</h4>
           <ul>
-            <li>Oh thats cringe looking</li>
+            <li>
+              Studying the intricacies of the English language and literature
+            </li>
+            <li>
+              Cumulative GPA of 3.4 out of 4.0 to get the Distinction
+              embellishment
+            </li>
           </ul>
         </section>
         <section class="education2">
@@ -110,13 +116,20 @@
           Ontario College Advanced Diploma
         </section>
         <section class="education2-text">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+          <h3>Computer Programming and Analysis</h3>
+          <h4>University of Toronto</h4>
+          <ul>
+            <li>Studying various languages like C, C++, JavaScript, SQL</li>
+            <li>
+              Learning agile application development and the development
+              lifecycle
+            </li>
+            <li>Aiming for the co-op workstream!</li>
+            <li>
+              Cumulative GPA of 3.4 out of 4.0 to get the Distinction
+              embellishment
+            </li>
+          </ul>
         </section>
       </div>
     </div>
@@ -139,6 +152,7 @@
                   class="form-control"
                   id="name"
                   name="name"
+                  placeholder="John Smith"
                   required
                 />
               </div>
@@ -149,6 +163,7 @@
                   class="form-control"
                   id="email"
                   name="email"
+                  placeholder="123@example.com"
                   required
                 />
               </div>
@@ -157,6 +172,7 @@
                 <input
                   type="text"
                   class="form-control"
+                  placeholder="123 Main Street"
                   id="address"
                   name="address"
                   required
@@ -170,6 +186,7 @@
                     class="form-control"
                     id="city"
                     name="city"
+                    placeholder="Toronto"
                     list="cities"
                     required
                   />
@@ -188,7 +205,8 @@
                     class="form-control"
                     id="postalCode"
                     name="postalCode"
-                    pattern="[^0-9DFIOQUWZ][0-9][^DFIOQU] [0-9][^0-9DFIOQU][0-9]"
+                    pattern="[^0-9DFIOQUWZ][0-9][^DFIOQU] ?[0-9][^0-9DFIOQU][0-9]"
+                    placeholder="A1A1A1"
                     required
                   />
                 </div>
@@ -200,7 +218,8 @@
                   class="form-control"
                   id="phone"
                   for="phone"
-                  pattern="/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/"
+                  pattern="[0-9]{10,11}"
+                  placeholder="18001112222"
                   required
                 />
               </div>
@@ -268,6 +287,7 @@
               <button type="reset" class="btn btn-secondary" value="Reset">
                 Reset
               </button>
+              <div id="error-box"><span id="error"></span></div>
             </form>
           </div>
         </div>
