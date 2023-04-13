@@ -24,6 +24,8 @@ realme.addEventListener("click", function () {
 
 /* Hiring Form */ 
 
+// checks every time the form changes for certain conditions
+
 form.addEventListener("change", function() {
   if (hiring.checked) {
     hourly.style.display = "block";
@@ -48,7 +50,7 @@ function showErrorMessage(msg) {
 }
 
 function hideErrorMessage() {
-  // remove from display
+  // remove box and therefore entire message from display
   errorbox.style.display ="none";
 }
 
@@ -67,7 +69,14 @@ form.onsubmit = function() {
     hideErrorMessage();
   }
 
+  if (!isNaN(name.value)) {
+    showErrorMessage("<b>Name can't be a number! Please include a valid name.</b>")
+  } else {
+    hideErrorMessage(); 
+  }
+
   // validate message length
+  // trim value first to only capture important characters
   message.value = message.value.trim(); 
   if (message.value.length < 50) {
     showErrorMessage("Message is too short. Please enter at least 50 characters.");
