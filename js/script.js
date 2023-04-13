@@ -5,6 +5,23 @@ const metext = document.getElementById("me-text");
 const form = document.forms["contactForm"];
 const hiring = form.elements["about"][2]; 
 const hourly = document.getElementById("hourly-rate");
+const rate = document.getElementById('rate');
+
+// variable for tracking issues in form submission
+var problem = false;
+
+/* Form validation for an hourly rate */
+rate.addEventListener('input', function() {
+  const amount = parseFloat(rate.value);
+
+  if (isNaN(amount)) {
+    showErrorMessage("Hourly rate must be a valid number.");
+  } else if (amount <= 0) {
+    showErrorMessage("There's no way you're making me pay to work for you!"); 
+  } else {
+    hideErrorMessage();
+  }
+});
 
 /* For fun function that swaps out my portfolio picture with the extra button */
 realme.addEventListener("click", function () {
@@ -27,6 +44,9 @@ realme.addEventListener("click", function () {
 // checks every time the form changes for certain conditions
 
 form.addEventListener("change", function() {
+
+  hideErrorMessage();
+
   if (hiring.checked) {
     hourly.style.display = "block";
     hourly.querySelector("input").setAttribute("required", true);
@@ -41,7 +61,7 @@ const errorbox = document.querySelector('#error-box');
 
 function showErrorMessage(msg) {
   // change display type so everything shows
-  errorbox.style.display ="inline-block";
+  errorbox.style.display ="block";
   error.style.display ="block";
   // Clear any previous message
   error.innerHTML = "";
@@ -52,23 +72,25 @@ function showErrorMessage(msg) {
 function hideErrorMessage() {
   // remove box and therefore entire message from display
   errorbox.style.display ="none";
+  // changes problem to false so form can submit
+  problem = false; 
 }
 
 /* Form Validation */
 
 form.onsubmit = function() { 
-
   const name = document.getElementById('name');
   const message = document.getElementById('message');
 
   // validate name input
   if (name.value.length < 3) {
     showErrorMessage("<b>Name is too short, how will I know who you are!</b>"); 
-    return false;
+   problem = true;
   } else {
     hideErrorMessage();
   }
 
+  // checks if the name is an actual alphabetic string 
   if (!isNaN(name.value)) {
     showErrorMessage("<b>Name can't be a number! Please include a valid name.</b>")
   } else {
@@ -80,9 +102,28 @@ form.onsubmit = function() {
   message.value = message.value.trim(); 
   if (message.value.length < 50) {
     showErrorMessage("Message is too short. Please enter at least 50 characters.");
-    return false;
+    problem = true;
   } else {
     hideErrorMessage(); 
+  }
+
+  // Grabs hourly rate input and checks if it is greater than 0 
+  // Load message in the case it is not 
+  
+  const pay = parseFloat(rate.value);
+  if (pay <= 0) {
+    showErrorMessage("Hourly rate must be greater than 0!");
+    problem = true;
+  } else {
+    hideErrorMessage();
+  }
+
+  // Final check to return false to force submission to fail
+  // Also forces error box to be scrolled into view for user correction
+
+  if (problem) {
+    errorbox.scrollIntoView(); 
+    return false;
   }
 }
 

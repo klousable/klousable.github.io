@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+/* Default styling for classless elements */
+
 h1 {
   padding: 2vh;
   font-size: 10vh;
@@ -70,13 +72,17 @@ img {
 }
 
 /* container class then keeps the max-width content to 1024 px and 95% of the page */
+/* entire page is kept into this container */
+
+/* modifies fixed-width of Bootstrap's container */
 .container {
-  margin: 0 auto;
+  margin: 0;
   width: 95%;
   max-width: 1024px;
 }
 
 /* grid with sections for each component of the portfolio */
+
 .grid {
   display: grid;
   width: 100%;
@@ -93,6 +99,7 @@ img {
     "education2 education2 education2-text education2-text";
 }
 
+/* header elements inside of the grid styled to be a certain colour and handle text length */
 .grid > header {
   grid-area: header;
   background-color: #28262c;
@@ -111,10 +118,9 @@ img {
   text-align: center;
 }
 
-.grid #me {
-  width: auto;
+.grid .me {
   grid-area: img;
-  object-fit: cover;
+  object-fit: fill;
   height: auto;
   width: 100%;
 }
@@ -151,7 +157,7 @@ img {
 .grid .about {
   grid-area: about;
   text-align: justify;
-  padding: 0 2vh 1.5vh 2vh;
+  padding: 2vh;
   height: 100%;
   background-color: #f9f5ff;
 }
@@ -165,7 +171,7 @@ img {
 }
 .grid .honesty {
   border-left: 3px solid #998fc7;
-  padding: 0 3vh;
+  padding: 2vh;
   height: 100%;
   background-color: #f9f5ff;
   grid-area: honesty;
@@ -189,6 +195,7 @@ img {
   max-height: 1024px;
   overflow-wrap: break-word;
   padding: 1.75vh;
+  font-size: 2.5vh;
 
   /* forces text to align vertically AND horizontally */
   display: flex;
@@ -210,6 +217,7 @@ img {
   text-align: center;
   color: #f9f5ff;
   padding: 1.75vh;
+  font-size: 2.5vh;
   /* forces text to align vertically AND horizontally */
   display: flex;
   justify-content: center;
@@ -268,6 +276,7 @@ a.link:hover {
   border-color: hotpink;
   text-align: center;
   margin-top: 1vh;
+  background-color: white;
 }
 
 .heading {
@@ -287,12 +296,14 @@ a.link:hover {
   background-color: #d4c2fc;
   padding: 5vh;
 }
+
 /* Grid layout will change to a vertical column in the case of mobile resizing */
+
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-gap: 2vh 0vh;
+    grid-gap: 1vh 0vh;
     grid-template-areas:
       "header"
       "img"
@@ -317,30 +328,5 @@ a.link:hover {
   .grid .honesty {
     display: block;
     grid-area: honesty;
-  }
-
-  .grid .education {
-    grid-area: education;
-    background-color: #28262c;
-    color: #f9f5ff;
-    text-align: center;
-    overflow-wrap: break-word;
-    padding: 1.75vh;
-  }
-  .grid .education-text {
-    grid-area: education-text;
-    padding-left: 4vh;
-  }
-  .grid .education2 {
-    grid-area: education2;
-    background-color: #28262c;
-    text-align: center;
-    color: #f9f5ff;
-    padding: 1.5vh;
-  }
-
-  .grid .education2-text {
-    grid-area: education2-text;
-    padding-left: 4vh;
   }
 }
