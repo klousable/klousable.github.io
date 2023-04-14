@@ -1,0 +1,14 @@
+.container {
+  margin: 0 2.5%;
+  width: 95%;
+  max-width: 1024px;
+}
+
+.keyboard-header {
+  background-color: aliceblue;
+  width: 100%;
+  height: 100%;
+  padding: 3vh;
+  text-align: center;
+  font-size: 10vh;
+}
