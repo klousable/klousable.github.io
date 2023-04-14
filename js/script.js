@@ -8,15 +8,16 @@ const form = document.forms["contactForm"];
 const hiring = form.elements["about"][2]; 
 const hourly = document.getElementById("hourly-rate");
 const rate = document.getElementById('rate');
+const name = document.getElementById('name');
 
 // variable for tracking issues in form submission
 let problem = false;
 
 // makes sure that ONLY numbers are entered
 phone.addEventListener('input', function() {
-  let input = phone.value;
+  let phonestr = phone.value;
   const phoneRegex = /\D/g; 
-  if (phoneRegex.test(input)) {
+  if (phoneRegex.test(phonestr)) {
     showErrorMessage("Please only enter numbers!");
   } else {
     hideErrorMessage();
@@ -34,6 +35,13 @@ rate.addEventListener('input', function() {
   } else {
     hideErrorMessage();
   }
+
+  if (amount <= 0) {
+    showErrorMessage("Hourly rate must be greater than 0!");
+  } else {
+    hideErrorMessage();
+  }
+
 });
 
 /* For fun function that swaps out my portfolio picture with the extra button */
@@ -58,8 +66,6 @@ realme.addEventListener("click", function () {
 
 form.addEventListener("change", function() {
 
-  hideErrorMessage();
-
   if (hiring.checked) {
     hourly.style.display = "block";
     hourly.querySelector("input").setAttribute("required", true);
@@ -76,8 +82,6 @@ function showErrorMessage(msg) {
   // change display type so everything shows
   errorbox.style.display ="block";
   error.style.display ="block";
-  // Clear any previous message
-  error.innerHTML = "";
   // Set the error message text
   error.innerHTML = msg;
 } 
@@ -85,55 +89,47 @@ function showErrorMessage(msg) {
 function hideErrorMessage() {
   // remove box and therefore entire message from display
   errorbox.style.display ="none";
-  // changes problem to false so form can submit
-  problem = false; 
+  // Clear any previous message
+  error.innerHTML = "";
 }
 
 /* Form Validation */
 
 form.onsubmit = function() { 
-  let problem = false;
-  const name = document.getElementById('name');
+
+  const nameInput = document.getElementById('name');
   const message = document.getElementById('message');
-
-
+  
   // validate name input
+  
   // trims whitespace 
-  name.value = name.value.trim(); 
-  if (name.value.length < 3) {
-    showErrorMessage("Name is too short, how will I know who you are!"); 
+  nameInput.value = nameInput.value.trim(); 
+  // checks if the name is an actual alphabetic string 
+  const nameValue = nameInput.value;
+  const nameCheck = /^[a-zA-Z\s]+$/; 
+
+  if (!nameCheck.test(nameValue)) {
+    showErrorMessage("Please enter a valid name with only letters and spaces.");
     problem = true;
   } else {
     hideErrorMessage();
   }
 
-  // checks if the name is an actual alphabetic string 
-  if (!isNaN(name.value)) {
-    showErrorMessage("<b>Name can't be a number! Please include a valid name.</b>")
+  if (nameValue.length < 3) {
+    showErrorMessage("Name is too short, how will I know who you are!");
     problem = true;
   } else {
     hideErrorMessage(); 
   }
-
+  
   // validate message length
   // trim value first to only capture important characters
   message.value = message.value.trim(); 
   if (message.value.length < 50) {
+    problem = true;
     showErrorMessage("Message is too short. Please enter at least 50 characters.");
-    problem = true;
-  } else {
+  } else if (!problem) {
     hideErrorMessage(); 
-  }
-
-  // Grabs hourly rate input and checks if it is greater than 0 
-  // Load message in the case it is not 
-  
-  const pay = parseFloat(rate.value);
-  if (pay <= 0) {
-    showErrorMessage("Hourly rate must be greater than 0!");
-    problem = true;
-  } else {
-    hideErrorMessage();
   }
 
   // Final check to return false to force submission to fail
@@ -141,6 +137,7 @@ form.onsubmit = function() {
 
   if (problem) {
     errorbox.scrollIntoView(); 
+    problem = false;
     return false;
   }
 }
