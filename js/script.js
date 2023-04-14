@@ -1,7 +1,7 @@
 const me = document.getElementById("me");
 const realme = document.getElementById("realme");
 const metext = document.getElementById("me-text");
-
+const phone = document.getElementById("phone");
 // Form Constants for Validation
 
 const form = document.forms["contactForm"];
@@ -11,6 +11,17 @@ const rate = document.getElementById('rate');
 
 // variable for tracking issues in form submission
 var problem = false;
+
+// makes sure that ONLY numbers are entered
+phone.addEventListener('input', function() {
+  let input = phone.value;
+  const phoneRegex = /\D/g; 
+  if (regex.test(phoneRegex)) {
+    showErrorMessage("Please only enter numbers!");
+  } else {
+    hideErrorMessage();
+  }
+});
 
 /* Form validation for an hourly rate */
 rate.addEventListener('input', function() {
