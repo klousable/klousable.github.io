@@ -2,6 +2,8 @@ const me = document.getElementById("me");
 const realme = document.getElementById("realme");
 const metext = document.getElementById("me-text");
 
+// Form Constants for Validation
+
 const form = document.forms["contactForm"];
 const hiring = form.elements["about"][2]; 
 const hourly = document.getElementById("hourly-rate");
@@ -67,7 +69,7 @@ function showErrorMessage(msg) {
   error.innerHTML = "";
   // Set the error message text
   error.innerHTML = msg;
-}
+} 
 
 function hideErrorMessage() {
   // remove box and therefore entire message from display
