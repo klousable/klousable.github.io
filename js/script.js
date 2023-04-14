@@ -10,7 +10,7 @@ const hourly = document.getElementById("hourly-rate");
 const rate = document.getElementById('rate');
 
 // variable for tracking issues in form submission
-var problem = false;
+let problem = false;
 
 // makes sure that ONLY numbers are entered
 phone.addEventListener('input', function() {
@@ -92,13 +92,17 @@ function hideErrorMessage() {
 /* Form Validation */
 
 form.onsubmit = function() { 
+  let problem = false;
   const name = document.getElementById('name');
   const message = document.getElementById('message');
 
+
   // validate name input
+  // trims whitespace 
+  name.value = name.value.trim(); 
   if (name.value.length < 3) {
-    showErrorMessage("<b>Name is too short, how will I know who you are!</b>"); 
-   problem = true;
+    showErrorMessage("Name is too short, how will I know who you are!"); 
+    problem = true;
   } else {
     hideErrorMessage();
   }
@@ -106,6 +110,7 @@ form.onsubmit = function() {
   // checks if the name is an actual alphabetic string 
   if (!isNaN(name.value)) {
     showErrorMessage("<b>Name can't be a number! Please include a valid name.</b>")
+    problem = true;
   } else {
     hideErrorMessage(); 
   }
