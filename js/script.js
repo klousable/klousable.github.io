@@ -2,8 +2,8 @@ const me = document.getElementById("me");
 const realme = document.getElementById("realme");
 const metext = document.getElementById("me-text");
 const phone = document.getElementById("phone");
-// Form Constants for Validation
 
+// Form Constants for Validation
 const form = document.forms["contactForm"];
 const hiring = form.elements["about"][2]; 
 const hourly = document.getElementById("hourly-rate");
@@ -17,6 +17,8 @@ let problem = false;
 phone.addEventListener('input', function() {
   let phonestr = phone.value;
   const phoneRegex = /\D/g; 
+  // checks for any non-digits 
+  
   if (phoneRegex.test(phonestr)) {
     showErrorMessage("Please only enter numbers!");
   } else {
@@ -121,7 +123,7 @@ form.onsubmit = function() {
   } else {
     hideErrorMessage(); 
   }
-  
+
   // validate message length
   // trim value first to only capture important characters
   message.value = message.value.trim(); 
