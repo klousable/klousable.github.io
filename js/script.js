@@ -16,7 +16,7 @@ var problem = false;
 phone.addEventListener('input', function() {
   let input = phone.value;
   const phoneRegex = /\D/g; 
-  if (regex.test(phoneRegex)) {
+  if (phoneRegex.test(input)) {
     showErrorMessage("Please only enter numbers!");
   } else {
     hideErrorMessage();
