@@ -1,29 +1,76 @@
+const form = document.forms["contactForm"];
+
 const me = document.getElementById("me");
 const realme = document.getElementById("realme");
 const metext = document.getElementById("me-text");
-const phone = document.getElementById("phone");
 
 // Form Constants for Validation
-const form = document.forms["contactForm"];
 const hiring = form.elements["about"][2]; 
 const hourly = document.getElementById("hourly-rate");
 const rate = document.getElementById('rate');
-const name = document.getElementById('name');
+const postal = document.getElementById('postalCode');
+const phone = document.getElementById('phone');
+const message = document.getElementById('message');
+const nameInput = document.getElementById('name');
+const city = document.getElementById('city');
+const email = document.getElementById('email');
 
-// variable for tracking issues in form submission
+// global variable for tracking issues in form submission
 let problem = false;
 
-// makes sure that ONLY numbers are entered
-phone.addEventListener('input', function() {
-  let phonestr = phone.value;
-  const phoneRegex = /\D/g; 
-  // checks for any non-digits 
-  
-  if (phoneRegex.test(phonestr)) {
-    showErrorMessage("Please only enter numbers!");
+// postal code input 
+postal.addEventListener('input', function () {
+  const postalInput = postal.value.trim(); 
+  const postalRegex = /[^0-9DFIOQUWZ][0-9][^DFIOQU] ?[0-9][^0-9DFIOQU][0-9]/; 
+  if (!postalRegex.test(postalInput)) {
+    problem = true;
+  showErrorMessage("Please enter a valid Canadian postal code! e.g. A1A1A1 or A1A 1A1");
   } else {
     hideErrorMessage();
   }
+});
+
+email.addEventListener('input', function () {
+  const whitespace = /\s/g; 
+  emailInput = email.value.trim(); 
+  if (whitespace.test(emailInput)) {
+    showErrorMessage("Emails cannot contain spaces!"); 
+    problem = true;
+  } else if (emailInput.length < 5) {
+    showErrorMessage("Invalid email length!");
+    problem = true;
+  } else {
+    hideErrorMessage(); 
+  }
+}); 
+
+city.addEventListener('input', function () {
+  const cityInput = city.value.trim();
+  if (cityInput.length < 3) {
+    showErrorMessage("City name is too short!"); 
+  } else if (!isNaN(parseFloat(cityInput))) {
+    showErrorMessage("City can't be a number!");
+  } else {
+    hideErrorMessage();
+  }
+});
+
+// makes sure that ONLY numbers are entered
+phone.addEventListener('input', function() {
+  let phonestr = phone.value.trim();
+  phonestr = phonestr.replace(/\s+/g, "");
+  const phoneRegex = /\D/g; 
+  // checks for any non-digits 
+
+  if (phoneRegex.test(phonestr)) {
+    showErrorMessage("Please only enter numbers!");
+    problem = true;
+  } else if (phonestr.length < 10){
+    showErrorMessage("Phone number must be at least 10 digits long!");
+  } else {
+    hideErrorMessage();
+  }
+  
 });
 
 /* Form validation for an hourly rate */
@@ -32,14 +79,17 @@ rate.addEventListener('input', function() {
 
   if (isNaN(amount)) {
     showErrorMessage("Hourly rate must be a valid number.");
+    problem = true;
   } else if (amount <= 0) {
     showErrorMessage("There's no way you're making me pay to work for you!"); 
+    problem = true;
   } else {
     hideErrorMessage();
   }
 
   if (amount <= 0) {
     showErrorMessage("Hourly rate must be greater than 0!");
+    problem = true;
   } else {
     hideErrorMessage();
   }
@@ -89,6 +139,7 @@ function showErrorMessage(msg) {
 } 
 
 function hideErrorMessage() {
+  problem = false;
   // remove box and therefore entire message from display
   errorbox.style.display ="none";
   // Clear any previous message
@@ -96,14 +147,11 @@ function hideErrorMessage() {
 }
 
 /* Form Validation */
+/* Each form field checked in order */
 
 form.onsubmit = function() { 
 
-  const nameInput = document.getElementById('name');
-  const message = document.getElementById('message');
-  
   // validate name input
-  
   // trims whitespace 
   nameInput.value = nameInput.value.trim(); 
   // checks if the name is an actual alphabetic string 
@@ -113,25 +161,28 @@ form.onsubmit = function() {
   if (!nameCheck.test(nameValue)) {
     showErrorMessage("Please enter a valid name with only letters and spaces.");
     problem = true;
-  } else {
-    hideErrorMessage();
   }
 
   if (nameValue.length < 3) {
     showErrorMessage("Name is too short, how will I know who you are!");
     problem = true;
-  } else {
-    hideErrorMessage(); 
   }
 
+  if (hiring.checked) {
+    const rateInput = rate.value.trim(); 
+    const pay = parseFloat(rateInput);
+    if (isNaN(pay) || pay <= 0 || rateInput.length === 0) {
+      showErrorMessage("Invalid hourly rate amount, must be a number greater than 0!");
+      problem = true;
+    } 
+  }
   // validate message length
   // trim value first to only capture important characters
-  message.value = message.value.trim(); 
-  if (message.value.length < 50) {
-    problem = true;
+
+  const messageInput = message.value.trim(); 
+  if (messageInput.length < 50) {
     showErrorMessage("Message is too short. Please enter at least 50 characters.");
-  } else if (!problem) {
-    hideErrorMessage(); 
+    problem = true; 
   }
 
   // Final check to return false to force submission to fail
@@ -139,8 +190,9 @@ form.onsubmit = function() {
 
   if (problem) {
     errorbox.scrollIntoView(); 
-    problem = false;
     return false;
+  } else {
+    hideErrorMessage(); 
   }
 }
 
