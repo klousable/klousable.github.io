@@ -14,6 +14,7 @@ const message = document.getElementById('message');
 const nameInput = document.getElementById('name');
 const city = document.getElementById('city');
 const email = document.getElementById('email');
+const address =  document.getElementById('address');
 
 // global variable for tracking issues in form submission
 let problem = false;
@@ -24,9 +25,17 @@ postal.addEventListener('input', function () {
   const postalRegex = /[^0-9DFIOQUWZ][0-9][^DFIOQU] ?[0-9][^0-9DFIOQU][0-9]/; 
   if (!postalRegex.test(postalInput)) {
     problem = true;
-  showErrorMessage("Please enter a valid Canadian postal code! e.g. A1A1A1 or A1A 1A1");
+    showErrorMessage("Please enter a valid Canadian postal code! e.g. A1A1A1 or A1A 1A1");
   } else {
     hideErrorMessage();
+  }
+});
+
+address.addEventListener('input', function() {
+  const addressInput = address.value.trim(); 
+  if (addressInput.length < 5 || isNaN(parseFloat(address.value))) {
+    problem = true;
+    showErrorMessage("Address is invalid, must be a mix of numbers and letters longer than 5 characters!");
   }
 });
 
